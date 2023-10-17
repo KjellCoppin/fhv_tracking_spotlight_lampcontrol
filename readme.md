@@ -1,6 +1,13 @@
-# Logic for moving the lamp
+# Lamp Movement API
 
-API:
+## Setup
+**install the Boost.Beast library:** "sudo apt-get install g++ cmake libboost-all-dev"
+**compile the server:** "g++ -o http_server http_server.cpp -lboost_system -lboost_thread -lboost_date_time -lpthread"
 
-POST /location
+## Endpoints
+**POST /location**
 requires body: " x_location=num & y_location=num "
+- *Description*: Send coodinates for the lamp to move to.
+- *Request Body*: "x_location=num & y_location=num"
+- *Response Body*: "Received x_location: num
+                    Received y_location: num "
