@@ -6,8 +6,7 @@
 
 ## Endpoints
 **POST /location**
-requires body: " x_location=num & y_location=num "
 - *Description*: Send coodinates for the lamp to move to.
-- *Request Body*: "x_location=num & y_location=num"
+- *Request Body (required)* : "x_location=num & y_location=num"
 - *Response Body*: "Received x_location: num
                     Received y_location: num "
