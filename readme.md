@@ -2,11 +2,17 @@
 
 ## Setup
 - **install the Boost.Beast library:**
-   "sudo apt-get install g++ cmake libboost-all-dev"
+   ```linux
+   sudo apt-get install g++ cmake libboost-all-dev
+   ```
 - **compile the server:**
-   "g++ -o http_server http_server.cpp -lboost_system -lboost_thread -lboost_date_time -lpthread"
+   ```linux
+   g++ -o http_server http_server.cpp -lboost_system -lboost_thread -lboost_date_time -lpthread
+   ```
 - **run the server:**
-   "./http_server"
+   ```linux
+   ./http_server
+   ```
 
 ## Endpoints
 **POST /location**
