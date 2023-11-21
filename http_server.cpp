@@ -14,6 +14,19 @@ using tcp = net::ip::tcp;
 
 void moveLamp(int x_value, int y_value) {
     std::cout << "Moving lamp to " << x_value << " " << y_value << std::endl;
+
+    // Construct the command to call the Python script with parameters
+    std::string command = "python move.py " + std::to_string(x_value) + " " + std::to_string(y_value);
+
+    // Call the Python script using system function
+    int result = std::system(command.c_str());
+
+    // Check the result of the system call
+    if (result == 0) {
+        std::cout << "Python script executed successfully" << std::endl;
+    } else {
+        std::cerr << "Error executing Python script" << std::endl;
+    }
 }
 
 
