@@ -4,6 +4,8 @@
 - **make sure the ethernetport of your machine has the right ip address**
    ```linux
    sudo ip addr flush dev eth0
+   ```
+   ```linux
    sudo ip addr add 192.168.0.1/24 dev eth0
    ```
 - **install the Boost.Beast library:**
