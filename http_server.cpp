@@ -12,11 +12,11 @@ namespace http = beast::http;
 namespace net = boost::asio;
 using tcp = net::ip::tcp;
 
-void moveLamp(int x_value, int y_value) {
-    std::cout << "Moving lamp to " << x_value << " " << y_value << std::endl;
+void moveLamp(int x_value) {
+    std::cout << "Moving lamp to " << x_value << std::endl;
 
     // Construct the command to call the Python script with parameters
-    std::string command = "python move.py " + std::to_string(x_value) + " " + std::to_string(y_value);
+    std::string command = "python move.py " + std::to_string(x_value);
 
     // Call the Python script using system function
     int result = std::system(command.c_str());
@@ -41,36 +41,31 @@ void handle_request(http::request<http::string_body>& request, http::response<ht
     try {
         // Parse the request body
         auto& body = request.body();
-        std::string x_location, y_location;
+        std::string x_location;
 
         // Find the x_location and y_location parameters in the body
         size_t xpos = body.find("x_location=");
-        size_t ypos = body.find("y_location=");
 
-        if (xpos != std::string::npos && ypos != std::string::npos) {
+        if (xpos != std::string::npos) {
             xpos += 11;  // Move past "x_location="
-            ypos += 11;  // Move past "y_location="
 
             // Find the end of the x_location and y_location values
             size_t x_end = body.find('&', xpos);
-            size_t y_end = body.find('&', ypos);
 
             x_location = body.substr(xpos, x_end - xpos);
-            y_location = body.substr(ypos, y_end - ypos);
         } else {
             response.result(http::status::bad_request);
-            response.body() = "Both x_location and y_location parameters are required.";
+            response.body() = "x_location param is required.";
             response.prepare_payload();
             return;
         }
 
-        moveLamp(std::stoi(x_location), std::stoi(y_location));
+        moveLamp(std::stoi(x_location));
         
         // echoing them back in the response.
         response.result(http::status::ok);
         response.set(http::field::server, "My-Custom-Server");
         response.body() = "Received x_location: " + x_location + "\n";
-        response.body() += "Received y_location: " + y_location;
         response.prepare_payload();
     } catch (std::exception const& e) {
         response.result(http::status::internal_server_error);
