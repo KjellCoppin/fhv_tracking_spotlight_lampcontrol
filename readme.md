@@ -20,6 +20,14 @@
    ```linux
    ./http_server
    ```
+### Setup MH-X25 Lamp
+- **Set lamp into slave mode**
+  ```
+  press mode untill you see "NASL" ->
+  press enter ->
+  press up untill you see "SLAv" ->
+  press enter
+  ```
 
 ## Endpoints
 **POST /location**
