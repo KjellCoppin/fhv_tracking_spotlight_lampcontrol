@@ -1,6 +1,19 @@
 # Lamp Movement API
 
 ## Setup
+### Setup MH-X25 Lamp
+- **Set lamp into slave mode**
+  ```
+  press mode untill you see "NASL" ->
+  press enter ->
+  press up untill you see "SLAv" ->
+  press enter
+  ```
+### Hardware connections
+- **Enttecc opendmx ethernet** <br>
+  -> Connect to the lamp with a XLR 5-pin male to XLR 3-pin female cable <br>
+  -> Connect to the linux machine with an ethernet cable
+### Run project on linux machine
 - **make sure the ethernetport of your machine has the right ip address**
    ```linux
    sudo ip addr flush dev eth0
@@ -20,15 +33,6 @@
    ```linux
    ./http_server
    ```
-### Setup MH-X25 Lamp
-- **Set lamp into slave mode**
-  ```
-  press mode untill you see "NASL" ->
-  press enter ->
-  press up untill you see "SLAv" ->
-  press enter
-  ```
-
 ## Endpoints
 **POST /location**
 - *Description*: Send coodinates for the lamp to move to.
